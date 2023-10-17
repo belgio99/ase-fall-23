@@ -51,28 +51,8 @@ class Game:
     def is_valid_move(self, move):
         """Return True if move is valid, and False otherwise."""
         row, col = move.row, move.col
-        # TODO: check that the current move has not been played already 
-        # and that there is no winner yet. Note that non-played cells
-        # contain an empty string (i.e. ""). 
-        # Use variables no_winner and move_not_played.
-        move_not_played = True
-        if self._current_moves[row][col].label != "":
-            print("Move already played!")
-            move_not_played = False
-        else:
-            print(self._current_moves)
-            print("Move not played")
-        
-        no_winner = True
-        if self.has_winner is True:
-            no_winner = False
-            print("Winner found!")
-        #else:
-        
-        #print("Move not played:" + move_not_played)
-
-
-        
+        move_not_played = self._current_moves[row][col].label == ""
+        no_winner = not self._has_winner
         return no_winner and move_not_played
 
     def process_move(self, move):
@@ -84,17 +64,13 @@ class Game:
         # and self.winner_combo in case of winning combo.
         # Hint: you can scan pre-computed winning combos in self._winning_combos
 
-        for i in self._winning_combos:
-            for j in i:
-                if (row,col) in j:
-                    
-
-        print("Tocca a " + self.current_player.label)
-
-
-
-
-
+        
+        for combo in self._winning_combos:
+            if (row, col) in combo:
+                labels_in_combo = [self._current_moves[r][c].label for r, c in combo]
+                if all(label == self.current_player.label for label in labels_in_combo):
+                    self._has_winner = True
+                    self.winner_combo = combo
 
     def has_winner(self):
         """Return True if the game has a winner, and False otherwise."""
