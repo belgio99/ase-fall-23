@@ -1,0 +1,22 @@
+version: '1'
+services:
+  math-service:
+    build: math_py
+    container_name: math
+
+  string-service:
+    build: string_py
+    container_name: string
+  
+  log-service:
+    build: log
+    container_name: log
+
+  gateway:
+    build: gateway
+    container_name: gateway
+    ports:
+      - 8080:8081
+    depends_on:
+      - math-service
+      - string-service
