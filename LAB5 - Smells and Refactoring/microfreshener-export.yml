@@ -1,0 +1,61 @@
+tosca_definitions_version: micro_tosca_yaml_1.1
+description: microase202324
+imports:
+- micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
+topology_template:
+  node_templates:
+    math:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: db
+    math2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: db
+    str:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: db
+    db:
+      type: micro.nodes.Datastore
+  groups:
+    adad:
+      type: micro.groups.Edge
+      members:
+      - math
+      - math2
+      - str
+  relationship_templates:
+    t:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true

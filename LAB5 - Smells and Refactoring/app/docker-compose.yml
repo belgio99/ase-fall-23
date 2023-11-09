@@ -1,0 +1,23 @@
+version: '3'
+services:
+  math-service1:
+    build: ./math_py
+  
+  math-service2:
+    build: ./math_py
+
+  string-service:
+    build: ./string_py
+
+  db:
+    image: redis:6.2-alpine
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning
+
+  gateway:
+    build: ./gateway
+    ports:
+      - 5004:5000
+
+  log-service:
+    build: ./log_py
