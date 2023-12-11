@@ -1,0 +1,282 @@
+openapi: 3.0.3
+info:
+  title: Microase2324 - OpenAPI 3.0
+  description: |-
+    Microase2324 gateway API.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/
+
+paths:
+  /math/add:
+    get:
+      tags:
+        - math
+      summary: Sum two numbers
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The first number to sum
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The second number to sum
+      
+      operationId: sum
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: Math service down.
+  /math/sub:
+    get:
+      tags:
+        - math
+      summary: Subtraction between two numbers
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The first number of the subtraction
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The second number of the subtraction
+      
+      operationId: sub
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: Math service down.
+  /math/mul:
+    get:
+      tags:
+        - math
+      summary: Sum two numbers
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The first number to multiply
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The second number to multiply
+      
+      operationId: mul
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: Math service down.
+  /math/div:
+    get:
+      tags:
+        - math
+      summary: Divide a number for another one.
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The dividend
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The divisor
+      
+      operationId: div
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '400':
+          description: Divisor equal to zero.
+        '404':
+          description: Math service down.
+  /math/mod:
+    get:
+      tags:
+        - math
+      summary: Modulus operation.
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The dividend
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The modulo
+      
+      operationId: mod
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '400':
+          description: Divisor equal to zero.
+        '404':
+          description: Math service down.  
+  /math/random:
+    get:
+      tags:
+        - math
+      summary: Random nummber between two numbers.
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: number
+          description: The lowerbound of the random set
+        - in: query
+          name: b
+          schema:
+            type: number
+          description: The upperbound of the randome set
+      
+      operationId: random
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: Math service down.
+
+  /str/concat:
+    get:
+      tags:
+        - str
+      summary: Concat two string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The first string to concat
+        - in: query
+          name: b
+          schema:
+            type: string
+          description: The second string to concat
+      operationId: concat
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.
+  /str/upper:
+    get:
+      tags:
+        - str
+      summary: Capitalise a string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The string to capitalise
+      operationId: upper
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.  
+  /str/lower:
+    get:
+      tags:
+        - str
+      summary: Lowercase a string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The string to lowercase
+      operationId: lower
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.  
+
+components:
+  schemas:
+    opRes:
+      type: object
+      properties:
+        s:
+          type: string
+          format: int64
+          example: 10

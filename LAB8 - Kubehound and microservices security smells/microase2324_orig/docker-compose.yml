@@ -1,0 +1,30 @@
+version: '3'
+services:
+  math-service1:
+    build: ./math_py
+  
+  math-service2:
+    build: ./math_py
+
+  string-service:
+    build: ./string_py
+  
+  log-service:
+    build: ./log_py
+    depends_on:
+      - log_db
+    ports:
+      - 5001:5000
+
+  gateway:
+    build: ./gateway
+    ports:
+      - 5000:5000
+
+  log_db: 
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'log_db'
+      MYSQL_USER: 'log'
+      MYSQL_PASSWORD: 'log'
+      MYSQL_ROOT_PASSWORD: 'root_password'

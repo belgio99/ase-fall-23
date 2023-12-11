@@ -1,0 +1,53 @@
+repositories:
+  main: 
+    src: microase2324
+  db:
+    git: https://github.com/docker-library/mysql.git
+
+deployment:
+  kubernetes:
+    repository: main
+    glob: deployment/*.yaml
+
+services:
+  - name: math-service1
+    image: microase2324-math-service1
+    repository: main
+    dockerfile: math_py/Dockerfile
+    sourcecode: math_py
+
+  - name: math-service2
+    image: microase2324-math-service2
+    repository: main
+    dockerfile: math_py/Dockerfile
+    sourcecode: math_py
+  
+  - name: string-service
+    image: microase2324-string-service
+    repository: main
+    dockerfile: string_py/Dockerfile
+    sourcecode: string_py    
+
+  - name: log-service
+    image: microase2324-log-service
+    repository: main
+    dockerfile: log_py/Dockerfile
+    sourcecode: log_py
+  
+  - name: gateway
+    image: microase2324-gateway
+    repository: main
+    dockerfile: gateway/Dockerfile
+    sourcecode: gateway  
+    openapi: gateway/gatewayAPI.yaml
+
+
+  - name: log_db
+    image: mysql:5.7
+    repository: db
+    sourcecode: .
+    dockerfile: 5.7/Dockerfile.oracle
+
+properties:
+  gateway:
+    external: true

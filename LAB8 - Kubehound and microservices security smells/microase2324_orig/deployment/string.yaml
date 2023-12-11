@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: string-service
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: string-service
+  template:
+    metadata:
+      labels:
+        app: string-service
+    spec:
+      containers:
+      - name: string-service
+        imagePullPolicy: Never
+        image: microase2324-string-service
+        ports:
+          - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: string-service
+spec:
+  selector: 
+    app: string-service
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

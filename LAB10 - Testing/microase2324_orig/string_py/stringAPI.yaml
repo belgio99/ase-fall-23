@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Microase2324 - OpenAPI 3.0
+  description: |-
+    Microase2324 string service API.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/
+
+paths:
+  /concat:
+    get:
+      tags:
+        - str
+      summary: Concat two string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The first string to concat
+        - in: query
+          name: b
+          schema:
+            type: string
+          description: The second string to concat
+      operationId: concat
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.
+  /upper:
+    get:
+      tags:
+        - str
+      summary: Capitalise a string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The string to capitalise
+      operationId: upper
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.  
+  /lower:
+    get:
+      tags:
+        - str
+      summary: Lowercase a string
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: string
+          description: The string to lowercase
+      operationId: lower
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/opRes'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/opRes'
+        '404':
+          description: String service down.  
+
+components:
+  schemas:
+    opRes:
+      type: object
+      properties:
+        s:
+          type: string
+          format: int64
+          example: "AAA"

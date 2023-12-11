@@ -1,0 +1,73 @@
+{
+  "components": [
+    {
+      "label": "Number of men",
+      "type": "number",
+      "layout": {
+        "row": "Row_0h73n0y",
+        "columns": null
+      },
+      "id": "Field_051kb5y",
+      "key": "legion_size"
+    },
+    {
+      "label": "Men strength",
+      "type": "number",
+      "layout": {
+        "row": "Row_1ouz755",
+        "columns": null
+      },
+      "id": "Field_1yqzsex",
+      "key": "legion_strength"
+    },
+    {
+      "label": "Number of defendants outside the capital",
+      "type": "number",
+      "layout": {
+        "row": "Row_1cp36cu",
+        "columns": null
+      },
+      "id": "Field_0vlbj27",
+      "key": "defendants_outside_size"
+    },
+    {
+      "label": "Strength of defendants outside the capital",
+      "type": "number",
+      "layout": {
+        "row": "Row_0zn7mv0",
+        "columns": null
+      },
+      "id": "Field_0ohn7is",
+      "key": "defendants_outside_strength"
+    },
+    {
+      "label": "Number of defendants inside the capital",
+      "type": "number",
+      "layout": {
+        "row": "Row_1vf5zkn",
+        "columns": null
+      },
+      "id": "Field_1h3l638",
+      "key": "defendants_inside_size"
+    },
+    {
+      "label": "Strength of defendants inside the capital",
+      "type": "number",
+      "layout": {
+        "row": "Row_1g5sact",
+        "columns": null
+      },
+      "id": "Field_1e3woy7",
+      "key": "defendants_inside_strength"
+    }
+  ],
+  "type": "default",
+  "id": "Form_18n7y4x",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.17.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.20.0",
+  "schemaVersion": 12
+}

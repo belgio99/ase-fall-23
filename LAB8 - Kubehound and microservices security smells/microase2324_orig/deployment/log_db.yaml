@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: log-service
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: log-service
+  template:
+    metadata:
+      labels:
+        app: log-service
+    spec:
+      containers:
+      - name: log-service
+        imagePullPolicy: Never
+        image: microase2324-log-service
+        ports:
+          - containerPort: 5000
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: log-db
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: log-db
+  template:
+    metadata:
+      labels:
+        app: log-db
+    spec:
+      containers:
+      - name: log-db
+        image: mysql:5.7
+        ports:
+          - containerPort: 3306
+        env:
+          - name: MYSQL_DATABASE
+            value:  'log_db'
+          - name: MYSQL_USER 
+            value: 'log'
+          - name: MYSQL_PASSWORD
+            value: 'log'
+          - name: MYSQL_ROOT_PASSWORD
+            value: 'root_password'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-service
+spec:
+  type: LoadBalancer
+  selector: 
+    app: log-service
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-db
+spec:
+  selector: 
+    app: log-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
